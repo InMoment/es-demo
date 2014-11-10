@@ -9,8 +9,8 @@
  */
 
 /* Configs */
-var indexName = "name"; //Ex: twitter
-var docType = "type"; //Ex: tweet
+var indexName = "responses"; //Ex: twitter
+var docType = "responses"; //Ex: tweet
 var maxResultsSize = 10;
 var host = "localhost"; //Ex: http://ec2-123-aws.com
 var port = 9200;

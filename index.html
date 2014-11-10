@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8'>
-    <title>Calaca | Search UI for Elasticsearch</title>
+    <title>InMoment FTS</title>
     <link rel='stylesheet' type='text/css' href='css/reset.css'>
     <link rel='stylesheet' type='text/css' href='css/calaca.css'>
     <!--[if IE]>
@@ -13,7 +13,7 @@
 
 <!-- Title and search box -->
 <header class='jumbotron'>
-  <h1 class='title'>Calaca</h1>
+  <h1 class='title'>InMoment FTS</h1>
   <div class='search-box-container'>
     <input type='text' class='search-box' placeholder='Search' autofocus ng-model='query' ng-change='search(0)'>
   </div>
@@ -25,11 +25,16 @@
     <p id='response-details'>{{(hits | number) || 0}} {{resultsString || 'results'}} ({{timeTook || 0}}ms)</p>
     <p ng-show='paginationEnabled()' id='pagination-details'>Showing {{paginationLowerBound}} - {{paginationUpperBound}}</p>
   </section>
+  <!-- <section class='charts' ng-show='ng-show='results && results.length && results.length > 0'> -->
+  <section class='charts'>
+   <div id="piechart" class="chart" style="width: 250px; height: 200px; display: inline-block;"></div>
+   <div id="histogram" class="chart" style="width: 550px; height: 200px; display: inline-block;"></div>
+  </section>
   <section class='results'>
     <p class='no-results' ng-show='!results.length && !loading'>No Results</p>
     <article class='result' ng-repeat='result in results track by $id(result)'>
-      <h2>{{result.name}}</h2>
-      <p>{{result.description}}</p>
+      <h2>org: {{result.org}}, location: {{result.location}}</h2>
+      <p>{{result.comment}}</p>
     </article>
   </section>
   <section class='pagination-controls'>
@@ -45,5 +50,12 @@
 <script src='js/app.js' type='text/javascript'></script>
 <script src='js/controllers.js' type='text/javascript'></script>
 <script src='js/services.js' type='text/javascript'></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+<script type="text/javascript">
+var googleChartsLoaded = false;
+google.setOnLoadCallback(function(){
+  googleChartsLoaded = true;
+});
+</script>
 </body>
 </html>
